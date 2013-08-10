@@ -37,6 +37,7 @@
 #include "gpio.h"
 #include "mrt.h"
 #include "uart.h"
+#include "renderer.h"
 
 #if defined(__CODE_RED)
   #include <cr_section_macros.h>
@@ -112,6 +113,10 @@ int main(void)
     LPC_GPIO_PORT->DIR0 |= (1 << LED_LOCATION);
   #endif
 
+  int pos = 1;
+  clear_screen();
+  hide_cursor();
+  init();
   while(1)
   {
     #if !defined(USE_SWD)
@@ -128,6 +133,13 @@ int main(void)
     #endif
 
     /* Send some text (printf is redirected to UART0) */
-    printf("Hello, LPC810!\n\r");
+      move_cursor(pos-1,10);
+	  printf(" ");
+	  move_cursor(pos,10);
+	  printf("o");
+	  ++pos;
+	  if(pos > 80)
+		  pos = 1;
   }
+  show_cursor();
 }
