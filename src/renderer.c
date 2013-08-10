@@ -6,6 +6,7 @@
  */
 
 #include "renderer.h"
+#include <stdio.h>
 
 #define X_MIN 1
 #define X_MAX 80
@@ -16,9 +17,10 @@ void init()
 {
 	move_cursor(1,1);
 	int i;
-	for(i = 0; i < 24; ++i)
-		printf("\033[37;40m                                                                                \033[30;47m\r\n");
 	printf("\033[37;40m");
+	for(i = 0; i < 23; ++i)
+		printf("                                                                                \r\n");
+	printf("                                                                                ");
 }
 
 void hide_cursor()

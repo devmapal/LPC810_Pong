@@ -8,6 +8,7 @@
 #ifndef RENDERER_H_
 #define RENDERER_H_
 
+void init();
 void hide_cursor();
 void show_cursor();
 void clear_screen();
