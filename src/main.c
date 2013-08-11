@@ -120,23 +120,9 @@ int main(void)
   char c = 'o';
   while(1)
   {
-//    #if !defined(USE_SWD)
-//      /* Turn LED Off by setting the GPIO pin high */
-//      LPC_GPIO_PORT->SET0 = 1 << LED_LOCATION;
-//      mrtDelay(500);
-//
-//      /* Turn LED On by setting the GPIO pin low */
-//      LPC_GPIO_PORT->CLR0 = 1 << LED_LOCATION;
-//      mrtDelay(500);
-//    #else
-//      /* Just insert a 1 second delay */
-//      mrtDelay(1000);
-//    #endif
-
 	  char d = uart0ReceiveChar();
 	  if(d)
 		  c = d;
-    /* Send some text (printf is redirected to UART0) */
       move_cursor(pos,10);
 	  printf(" ");
 	  ++pos;

@@ -46,10 +46,6 @@ extern "C" {
 #define UART_DATA_LENGTH_8   (1 << 2)
 #define UART_PARITY_NONE     (0 << 4)
 #define UART_STOP_BIT_2      (1 << 6)
-//#define UART_STOP_BIT_1      (0 << 6)
-//#define UART_DATA_LENGTH_8   (1 << 0)
-//#define UART_PARITY_NONE     (0 << 2)
-//#define UART_STOP_BIT_1      (0 << 4)
 
 /* Status bits */
 #define UART_STATUS_RXRDY    (1 << 0)
