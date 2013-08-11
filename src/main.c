@@ -114,6 +114,7 @@ int main(void)
   #endif
 
   int pos = 1;
+  while(!uart0ReceiveChar());
   clear_screen();
   hide_cursor();
   init();
