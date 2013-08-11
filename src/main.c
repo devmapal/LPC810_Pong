@@ -38,6 +38,7 @@
 #include "mrt.h"
 #include "uart.h"
 #include "renderer.h"
+#include "pong_ball.h"
 
 #if defined(__CODE_RED)
   #include <cr_section_macros.h>
@@ -113,27 +114,29 @@ int main(void)
     LPC_GPIO_PORT->DIR0 |= (1 << LED_LOCATION);
   #endif
 
-  int pos = 1;
+//  int pos = 1;
   while(!uart0ReceiveChar());
   clear_screen();
   hide_cursor();
   init();
-  char c = 'o';
+  //char c = 'o';
+  ball_init(40, 5, NW);
   while(1)
   {
-	  char d = uart0ReceiveChar();
-	  if(d)
-		  c = d;
-      move_cursor(pos,10);
-	  printf(" ");
-	  ++pos;
-	  if(pos > 80)
-	  {
-		  pos = 1;
-		  move_cursor(pos,10);
-	  }
-	  printf("%c", c);
+//	  char d = uart0ReceiveChar();
+//	  if(d)
+//		  c = d;
+//      move_cursor(pos,10);
+//	  printf(" ");
+//	  ++pos;
+//	  if(pos > 80)
+//	  {
+//		  pos = 1;
+//		  move_cursor(pos,10);
+//	  }
+//	  printf("%c", c);
 
+	  ball_step();
 	  mrtDelay(15);
   }
   show_cursor();

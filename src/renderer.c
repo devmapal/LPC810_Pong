@@ -6,12 +6,10 @@
  */
 
 #include "renderer.h"
+#include "pong_field.h"
+#include "uart.h"
 #include <stdio.h>
 
-#define X_MIN 1
-#define X_MAX 80
-#define Y_MIN 1
-#define Y_MAX 48
 
 void init()
 {
@@ -37,22 +35,36 @@ void clear_screen()
     printf("\033[30;47m\033[2J\033[37;40m");
 }
 
-int valid_pos(int x, int y)
-{
-	if(x >= X_MIN && x <= X_MAX)
-	{
-		if(y >= Y_MIN && y <= Y_MAX)
-			return 1;
-	}
-
-	return 0;
-}
-
 void move_cursor(int x, int y)
 {
-	if( !valid_pos(x, y) )
-		return;
-
 	y /= 2;
 	printf("\033[%d;%dH", y, x);
+}
+
+void print_top_block()
+{
+//	printf("%c%c%c", 0xe2, 0x96, 0x80);
+	uart0SendChar(0xe2);
+	uart0SendChar(0x96);
+	uart0SendChar(0x80);
+}
+
+void print_bottom_block()
+{
+//	printf("%c%c%c", 0xe2, 0x96, 0x84);
+	uart0SendChar(0xe2);
+	uart0SendChar(0x96);
+	uart0SendChar(0x84);
+}
+
+void renderer_ball(uint8_t x, uint8_t y, uint8_t x_prev, uint8_t y_prev)
+{
+	move_cursor(x_prev, y_prev);
+	printf(" ");
+	move_cursor(x, y);
+	if(y%2)
+		print_bottom_block();
+	else
+		print_top_block();
+//	printf("%d", y);
 }

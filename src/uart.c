@@ -91,19 +91,3 @@ void uart0Send(char *buffer, uint32_t length)
     length--;
   }
 }
-
-void print_top_block()
-{
-//	printf("%c%c%c", 0xe2, 0x96, 0x80);
-	uart0SendChar(0xe2);
-	uart0SendChar(0x96);
-	uart0SendChar(0x80);
-}
-
-void print_bottom_block()
-{
-//	printf("%c%c%c", 0xe2, 0x96, 0x84);
-	uart0SendChar(0xe2);
-	uart0SendChar(0x96);
-	uart0SendChar(0x84);
-}
