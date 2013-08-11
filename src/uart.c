@@ -37,8 +37,18 @@
 
 #include "uart.h"
 
+uint8_t usart_ram[4];
+UART_HANDLE_T* uart_h;
+
 void uart0Init(uint32_t baudRate)
 {
+//	uart_h = LPC_UART_DRV->uart_setup(LPC_USART0_BASE, usart_ram);
+//	UART_CONFIG_T uart_config;
+//	uart_config.sys_clk_in_hz = 12000000;
+//	uart_config.baudrate_in_hz = baudRate;
+//	uart_config.config = UART_DATA_LENGTH_8 | UART_PARITY_NONE | UART_STOP_BIT_1;
+//	uint32_t frac_div = LPC_UART_DRV->uart_init(uart_h, uart_config);
+
   uint32_t clk;
   const uint32_t UARTCLKDIV=1;
 
@@ -71,7 +81,8 @@ void uart0SendChar(char buffer)
 {
   /* Wait until we're ready to send */
   while (!(LPC_USART0->STAT & UART_STATUS_TXRDY));
-  LPC_USART0->TXDATA = buffer;
+  	  LPC_USART0->TXDATA = buffer;
+//	LPC_UART_DRV->uart_put_char(uart_h, buffer);
 }
 
 void uart0Send(char *buffer, uint32_t length)
