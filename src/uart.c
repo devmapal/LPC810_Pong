@@ -34,11 +34,13 @@
 */
 /**************************************************************************/
 #include <string.h>
+#include <stdio.h>
 
 #include "uart.h"
+#include "renderer.h"
 
-uint8_t usart_ram[4];
-UART_HANDLE_T* uart_h;
+//uint8_t usart_ram[4];
+//UART_HANDLE_T* uart_h;
 
 void uart0Init(uint32_t baudRate)
 {
@@ -61,7 +63,7 @@ void uart0Init(uint32_t baudRate)
 
   /* Configure UART0 */
   clk = __MAIN_CLOCK/UARTCLKDIV;
-  LPC_USART0->CFG = UART_DATA_LENGTH_8 | UART_PARITY_NONE | UART_STOP_BIT_1;
+  LPC_USART0->CFG = UART_DATA_LENGTH_8 | UART_PARITY_NONE | UART_STOP_BIT_2;
   LPC_USART0->BRG = clk / 16 / baudRate - 1;
   LPC_SYSCON->UARTFRGDIV = 0xFF;
   LPC_SYSCON->UARTFRGMULT = (((clk / 16) * (LPC_SYSCON->UARTFRGDIV + 1)) /
@@ -83,6 +85,14 @@ void uart0SendChar(char buffer)
   while (!(LPC_USART0->STAT & UART_STATUS_TXRDY));
   	  LPC_USART0->TXDATA = buffer;
 //	LPC_UART_DRV->uart_put_char(uart_h, buffer);
+}
+
+char uart0ReceiveChar()
+{
+	if (LPC_USART0->STAT & UART_STATUS_RXRDY)
+		return LPC_USART0->RXDATA;
+
+	return 0;
 }
 
 void uart0Send(char *buffer, uint32_t length)

@@ -117,6 +117,7 @@ int main(void)
   clear_screen();
   hide_cursor();
   init();
+  char c = 'o';
   while(1)
   {
 //    #if !defined(USE_SWD)
@@ -132,6 +133,9 @@ int main(void)
 //      mrtDelay(1000);
 //    #endif
 
+	  char d = uart0ReceiveChar();
+	  if(d)
+		  c = d;
     /* Send some text (printf is redirected to UART0) */
       move_cursor(pos,10);
 	  printf(" ");
@@ -141,7 +145,8 @@ int main(void)
 		  pos = 1;
 		  move_cursor(pos,10);
 	  }
-	  printf("o");
+	  printf("%c", c);
+
 	  mrtDelay(15);
   }
   show_cursor();
