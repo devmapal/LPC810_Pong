@@ -137,6 +137,17 @@ int main(void)
 //	  printf("%c", c);
 
 	  ball_step();
+//	  render_num(11, 11, 0);
+//	  render_num(21, 11, 1);
+//	  render_num(31, 11, 2);
+//	  render_num(41, 11, 3);
+//	  render_num(51, 11, 4);
+//	  render_num(11, 11, 5);
+//	  render_num(21, 11, 6);
+//	  render_num(31, 11, 7);
+//	  render_num(41, 11, 8);
+//	  render_num(51, 11, 9);
+	  render_score(11, 11, 8);
 	  mrtDelay(15);
   }
   show_cursor();
