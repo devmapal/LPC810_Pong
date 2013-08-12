@@ -8,9 +8,12 @@
 #include "pong_ball.h"
 #include "pong_field.h"
 #include "renderer.h"
+#include "player.h"
 
 
 PONG_BALL_T ball;
+uint8_t player1_points;
+uint8_t player2_points;
 
 
 void ball_init(uint8_t x, uint8_t y, uint8_t direction)
@@ -22,26 +25,48 @@ void ball_init(uint8_t x, uint8_t y, uint8_t direction)
 
 void ball_step()
 {
-	int i;
+	uint8_t i;
+	uint8_t prev_x = ball.x;
+	uint8_t prev_y = ball.y;
 	for(i = 0; i < 2; ++i)
 	{
 		if(ball.x == X_MIN)
 		{
-			if( ball.direction == W )
-				ball.direction = E;
-			else if( ball.direction == NW )
-				ball.direction = NE;
-			else if( ball.direction == SW )
-				ball.direction = SE;
+			delete_scores();
+			++player2_points;
+			prev_x = ball.x;
+			ball.x = X_MIN + (X_MAX-X_MIN)/2;
+			switch(ball.y%3)
+			{
+			case 0:
+				ball.direction = SW;
+				break;
+			case 1:
+				ball.direction = W;
+				break;
+			case 2:
+				ball.direction = NW;
+				break;
+			}
 		}
 		else if(ball.x == X_MAX)
 		{
-			if( ball.direction == E )
-				ball.direction = W;
-			else if( ball.direction == NE )
-				ball.direction = NW;
-			else if( ball.direction == SE )
-				ball.direction = SW;
+			delete_scores();
+			++player1_points;
+			prev_x = ball.x;
+			ball.x = X_MIN + (X_MAX-X_MIN)/2;
+			switch(ball.y%3)
+			{
+			case 0:
+				ball.direction = SE;
+				break;
+			case 1:
+				ball.direction = E;
+				break;
+			case 2:
+				ball.direction = NE;
+				break;
+			}
 		}
 
 		if(ball.y == Y_MIN)
@@ -60,8 +85,6 @@ void ball_step()
 		}
 	}
 
-	uint8_t prev_x = ball.x;
-	uint8_t prev_y = ball.y;
 	switch(ball.direction)
 	{
 	case W:

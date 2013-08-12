@@ -8,8 +8,17 @@
 #include "renderer.h"
 #include "pong_field.h"
 #include "uart.h"
+#include "player.h"
 #include <stdio.h>
 
+
+uint8_t player1_points;
+uint8_t player2_points;
+
+#define PLAYER1_SCORE_X 10
+#define PLAYER1_SCORE_Y 10
+#define PLAYER2_SCORE_X 50
+#define PLAYER2_SCORE_Y 10
 
 
 void hide_cursor()
@@ -216,6 +225,23 @@ void render_score(uint8_t x, uint8_t y, uint8_t num)
 	render_num(x+7, y, num_low);
 }
 
+void render_scores()
+{
+	render_score(PLAYER1_SCORE_X, PLAYER1_SCORE_Y, player1_points);
+	render_score(PLAYER2_SCORE_X, PLAYER2_SCORE_Y, player2_points);
+}
+
+void delete_scores()
+{
+	int y;
+	for(y = 0; y < 6; ++y)
+	{
+		move_cursor(PLAYER1_SCORE_X, PLAYER1_SCORE_Y+y);
+		printf("           ");
+		move_cursor(PLAYER2_SCORE_X, PLAYER2_SCORE_Y+y);
+		printf("           ");
+	}
+}
 
 void renderer_ball(uint8_t x, uint8_t y, uint8_t x_prev, uint8_t y_prev)
 {

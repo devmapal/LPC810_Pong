@@ -42,6 +42,7 @@
 #include "pong_bat.h"
 #include "pong_field.h"
 #include "pong_collision.h"
+#include "player.h"
 
 #if defined(__CODE_RED)
   #include <cr_section_macros.h>
@@ -126,7 +127,9 @@ int main(void)
 
   ball_init(40, 5, NW);
   bat_init(5, (Y_MAX - Y_MIN)/2, 3);
+  players_init();
 
+  uint8_t round = 0;
   while(1)
   {
 //	  char d = uart0ReceiveChar();
@@ -142,12 +145,17 @@ int main(void)
 //	  }
 //	  printf("%c", c);
 
-	  ball_step();
-	  calculate_collision(ball, bat1, bat2);
+	  ++round;
+	  if(round == 4)
+	  {
+		  ball_step();
+		  calculate_collision(ball, bat1, bat2);
+		  render_scores();
+		  round = 0;
+	  }
 	  bat_step();
 
-	  render_score(11, 11, 8);
-	  mrtDelay(100);
+	  mrtDelay(5);
   }
   show_cursor();
 }
