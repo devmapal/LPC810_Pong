@@ -18,6 +18,14 @@
 #define SE	4
 #define SW	5
 
+typedef struct
+{
+	uint8_t x,y;
+	uint8_t direction;
+} PONG_BALL_T;
+
+extern PONG_BALL_T ball;
+
 void ball_init(uint8_t x, uint8_t y, uint8_t direction);
 void ball_step();
 

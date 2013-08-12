@@ -10,13 +10,8 @@
 #include "renderer.h"
 
 
-typedef struct
-{
-	uint8_t x,y;
-	uint8_t direction;
-} PONG_BALL_T;
-
 PONG_BALL_T ball;
+
 
 void ball_init(uint8_t x, uint8_t y, uint8_t direction)
 {

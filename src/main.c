@@ -39,6 +39,9 @@
 #include "uart.h"
 #include "renderer.h"
 #include "pong_ball.h"
+#include "pong_bat.h"
+#include "pong_field.h"
+#include "pong_collision.h"
 
 #if defined(__CODE_RED)
   #include <cr_section_macros.h>
@@ -120,7 +123,10 @@ int main(void)
   hide_cursor();
   init();
   //char c = 'o';
+
   ball_init(40, 5, NW);
+  bat_init(5, (Y_MAX - Y_MIN)/2, 5);
+
   while(1)
   {
 //	  char d = uart0ReceiveChar();
@@ -137,6 +143,8 @@ int main(void)
 //	  printf("%c", c);
 
 	  ball_step();
+	  calculate_collision(ball, bat1, bat2);
+	  bat_step();
 	  mrtDelay(15);
   }
   show_cursor();
