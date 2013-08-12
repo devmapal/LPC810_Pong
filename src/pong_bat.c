@@ -18,7 +18,7 @@ PONG_BAT_T bat2;
 int check_batLimits(PONG_BAT_T bat, uint8_t y)
 {
 	int y_new = bat.y;
-	if(((y + bat.length) <= Y_MAX) && (y > Y_MIN))
+	if(((y + bat.length-1) <= Y_MAX) && (y >= Y_MIN))
 		y_new = y;
 
 	return y_new;

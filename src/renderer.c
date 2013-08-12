@@ -86,7 +86,12 @@ void init()
 		}
 		printf("\r\n");
 	}
-	printf("                                                                                ");
+	for(x = X_MIN ; x < X_MAX; x++)
+	{
+		printf(" ");
+		if(x == 40)
+			print_tennis_net();
+	}
 }
 
 

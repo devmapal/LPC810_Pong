@@ -126,14 +126,14 @@ int main(void)
   //char c = 'o';
 
   ball_init(40, 5, NW);
-  bat_init(5, (Y_MAX - Y_MIN)/2, 3);
+  bat_init(5, Y_MIN + (Y_MAX - Y_MIN)/2, 3);
   players_init();
 
   uint8_t round = 0;
   while(1)
   {
 	  ++round;
-	  if(round == 4)
+	  if(round == 8)
 	  {
 		  ball_step();
 		  calculate_collision();
@@ -143,7 +143,7 @@ int main(void)
 
 	  bat_step();
 
-	  mrtDelay(10);
+	  mrtDelay(5);
   }
   show_cursor();
 }
