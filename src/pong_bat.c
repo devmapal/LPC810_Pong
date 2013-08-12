@@ -53,19 +53,19 @@ void bat_step()
 		switch(playerAction)
 		{
 		case 'w':
-			bat1.y = check_batLimits(bat1, (bat1.y - 2));
+			bat1.y = check_batLimits(bat1, (bat1.y - 1));
 			renderer_pong_bat(bat1.x, bat1.y, bat1.x, prevBat1_y, bat1.length);
 			break;
 		case 's':
-			bat1.y = check_batLimits(bat1, (bat1.y + 2));
+			bat1.y = check_batLimits(bat1, (bat1.y + 1));
 			renderer_pong_bat(bat1.x, bat1.y, bat1.x, prevBat1_y, bat1.length);
 			break;
 		case 'o':
-			bat2.y = check_batLimits(bat2, (bat2.y - 2));
+			bat2.y = check_batLimits(bat2, (bat2.y - 1));
 			renderer_pong_bat(bat2.x, bat2.y, bat2.x, prevBat2_y, bat2.length);
 			break;
 		case 'l':
-			bat2.y = check_batLimits(bat2, (bat2.y + 2));
+			bat2.y = check_batLimits(bat2, (bat2.y + 1));
 			renderer_pong_bat(bat2.x, bat2.y, bat2.x, prevBat2_y, bat2.length);
 			break;
 		}

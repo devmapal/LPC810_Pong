@@ -125,7 +125,7 @@ int main(void)
   //char c = 'o';
 
   ball_init(40, 5, NW);
-  bat_init(5, (Y_MAX - Y_MIN)/2, 5);
+  bat_init(5, (Y_MAX - Y_MIN)/2, 3);
 
   while(1)
   {
@@ -145,7 +145,9 @@ int main(void)
 	  ball_step();
 	  calculate_collision(ball, bat1, bat2);
 	  bat_step();
-	  mrtDelay(15);
+
+	  render_score(11, 11, 8);
+	  mrtDelay(100);
   }
   show_cursor();
 }
