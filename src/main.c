@@ -143,7 +143,7 @@ int main(void)
 //	  printf("%c", c);
 
 	  ball_step();
-	  calculate_collision(ball, bat1, bat2);
+	  calculate_collision();
 	  bat_step();
 
 	  render_score(11, 11, 8);

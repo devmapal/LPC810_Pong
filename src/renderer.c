@@ -26,7 +26,7 @@ void clear_screen()
     printf("\033[30;47m\033[2J\033[37;40m");
 }
 
-void move_cursor(int x, int y)
+void move_cursor(uint8_t x, uint8_t y)
 {
 	y /= 2;
 	printf("\033[%d;%dH", y, x);
@@ -240,3 +240,12 @@ void renderer_pong_bat(uint8_t x, uint8_t y, uint8_t x_prev, uint8_t y_prev, uin
 	erase_vertical_line(x_prev, y_prev, length);
 	render_vertical_line(x, y, length);
 }
+
+#ifdef __DBG__
+void render_debug(char* debugMsg, uint8_t y_offset)
+{
+	move_cursor(X_MIN, Y_MAX + y_offset);
+	printf("%s", debugMsg);
+}
+#endif /* __DBG__ */
+

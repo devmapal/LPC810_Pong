@@ -11,7 +11,7 @@
 #include <stdint.h>
 
 
-void calculate_collision(PONG_BALL_T ball, PONG_BAT_T bat1, PONG_BAT_T bat2);
+void calculate_collision();
 
 
 #endif /* PONG_COLLISION_H_ */
